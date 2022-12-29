@@ -1,0 +1,40 @@
+table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border: 1px solid black;
+  width: 100%;
+}
+table, th, td {
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+td {
+      white-space:pre-wrap; 
+      word-wrap:break-word;
+      height:100px;
+      width:50px;
+}
+
+th {
+      border-collapse: collapse;
+      color: white;
+    }
+tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+div.scrollable {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
