@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tab.css') }}">
+
+</head>
+{% block content %}
+    <section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    </section>
+    <!-- <h2 style="text-align:center">{{ title }}</h2> -->
+    {% if food_group %}
+    <h2 style="text-align:center"> {{ food_group }} </h2>
+    <table class="table table-sm">
+            <thead class="thead-light">
+            <tr>
+                {%for k in labels %}
+                    <th> {{ k }} </th>
+                {% endfor %}
+            </tr>
+            </thead>
+
+        {% for item in values %}
+            <tr style="height:100px">
+                {% for val in item %}
+                    <td> {{ val }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %} 
+    <div class="btn-group" >
+          <a class="main-btn" href='{{ url_for('food.search') }}' > Search </a>
+    </div>
+{% endblock content %}
+
+</html>

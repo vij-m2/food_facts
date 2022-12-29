@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- <div class="test_results"> -->
+<!-- <table id="test_results"> -->
+<h2 style="text-align:center">Daily Test Report</h2>
+{%for cad_data in cadence_data_list %}
+<h2 style="text-align:center"> {{ cad_data[0] }} </h2>
+<table class="table table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th> ID </th>
+            <th> Test-Name </th>
+            <th> Build-id  </th>
+            <th> Pass-Percent </th>
+            <th> Complete-Percent </th>
+            <th> Test-Start-Time </th>
+            <th> notes </th>
+            <th> Last-Updated-Time </th>
+            <th> Original-Pass-Percent </th>
+        </tr>
+    </thead>
+
+    {% for res in cad_data[1] %}
+    <tr style="height:100px">
+        <td> <a href="{{ url_for('update_test_result', tr_id=res.id) }}">{{ res.id  }}</a></td>
+        <td> <a href="{{ url_for('get_results_by_test', ts=res.test_suite) }}">{{ res.test_suite  }}</a></td>
+        <td> <a href="{{ res.report_url }}">{{ res.build_id }}</a></td>
+        <td> {{ (res.pass_percent)|int }} </td>
+        <td> {{ (res.complete_percent)|int }} </td>
+        <td> {{ res.created_date.strftime('%Y-%m-%d %H-%M-%S') }} </td>
+        <td><div class=scrollable> {{ res.notes }}</div></td>
+        <td> {{ res.updated_date.strftime('%Y-%m-%d %H-%M-%S') }} </td>
+        <td> {{ (res.org_pass_percent)|int }} </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endfor %}
+
+{% endblock content %}
