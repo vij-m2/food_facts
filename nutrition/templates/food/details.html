@@ -35,10 +35,14 @@
             </thead>
 
         {% for item in values %}
-            <tr style="height:100px">
-                {% for val in item %}
-                    <td> {{ val }} </td>
-                {% endfor %}
+            <tr>
+                {% if item is not string %}
+                    {% for val in item %}
+                        <td> {{ val }} </td>
+                    {% endfor %}
+                {% else %}
+                    <td> {{ item }} </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>

@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
 )
 
 from .csv_reader import read_fact_file
@@ -35,3 +35,12 @@ def search():
 
 
     return render_template('food/search.html')
+
+@bp.route('/food_groups', methods=(['GET']))
+def food_groups():
+    food_groups = list()
+    for item in read_fact_file("C:\\Users\\VMARAM\\Downloads\\MyFoodData.csv"):
+        if item['Food Group'] not in food_groups:
+            food_groups.append(item['Food Group'])
+            print(f"appending {item['Food Group']}")
+    return render_template('food/details.html', food_group="Food Groups", labels=['Groups'], values=food_groups)
