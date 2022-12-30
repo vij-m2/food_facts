@@ -1,7 +1,7 @@
 table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border: 1px solid black;
-  width: 100%;
+  width: auto;
 }
 table, th, td {
       border-collapse: collapse;
@@ -10,8 +10,7 @@ table, th, td {
 td {
       white-space:pre-wrap; 
       word-wrap:break-word;
-      height:100px;
-      width:50px;
+      height:10px;
 }
 
 th {
