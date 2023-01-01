@@ -19,7 +19,7 @@ def search():
         food_group = None
         if error is None:
             relevant_items = []
-            for item in read_fact_file("C:\\Users\\VMARAM\\Downloads\\MyFoodData.csv"):
+            for item in read_fact_file("C:\\Users\\VMARAM\\data\\food_facts\\food_facts\\data\\MyFoodData.csv"):
                 if item['name'].lower().find(ingredient.lower()) != -1:
                     # title = item.pop('name')
                     food_group = item.pop('Food Group')
@@ -39,8 +39,9 @@ def search():
 @bp.route('/food_groups', methods=(['GET']))
 def food_groups():
     food_groups = list()
-    for item in read_fact_file("C:\\Users\\VMARAM\\Downloads\\MyFoodData.csv"):
+    for item in read_fact_file("C:\\Users\\VMARAM\\data\\food_facts\\food_facts\\data\MyFoodData.csv"):
         if item['Food Group'] not in food_groups:
             food_groups.append(item['Food Group'])
             print(f"appending {item['Food Group']}")
+            jsonify({'food_group': food_groups})
     return render_template('food/details.html', food_group="Food Groups", labels=['Groups'], values=food_groups)
